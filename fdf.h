@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/11 15:26:43 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/15 17:25:23 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_mlx_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_image	img;
+	t_image	image;
 }				t_mlx_data;
 
 typedef struct s_point
@@ -44,7 +44,6 @@ typedef struct s_world
 
 typedef struct s_state
 {
-	t_image		image;
 	t_mlx_data	mlx;
 	t_world		world;
 }				t_state;
