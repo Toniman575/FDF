@@ -6,9 +6,13 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 15:22:22 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/15 18:26:42 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/15 18:30:10 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//! TODOS:
+//! Before you make the project bigger, make sure you free everything you have right now
+//! and handle errors!
 
 #include <mlx.h>
 #include <sys/stat.h>
