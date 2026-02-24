@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 15:22:22 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/19 17:41:38 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/24 13:54:05 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,15 @@ void	free_split(char **str)
 
 void	handle_exit(t_state *state)
 {
-	
+	mlx_destroy_image(state->mlx.mlx_ptr, state->mlx.image.img);
+	state->mlx.image.addr = NULL;
+	mlx_destroy_window(state->mlx.mlx_ptr, state->mlx.win_ptr);
+	state->mlx.win_ptr = NULL;
+	free(state->world.points);
+	state->world.points = NULL;
+	free(state->mlx.mlx_ptr);
+	state->mlx.mlx_ptr = NULL;
+	exit(EXIT_SUCCESS);
 }
 
 int	ft_atoi_hex(void)
@@ -56,6 +64,7 @@ int	parse_col(char **row, int index, int col_i, t_state *state)
 		}
 		state->world.points[index].height = ft_atoi(hac[0]);
 		state->world.points[index].color = ft_atoi_hex();
+		free_split(hac);
 	}
 	else
 	{
@@ -86,6 +95,7 @@ void	parse_row(char **rows, int row_i, t_state *state)
 		}
 		col_i++;
 	}
+	free_split(row);
 }
 
 void	prepare_world(char **rows, t_state *state)
@@ -128,6 +138,7 @@ void	parse_map(t_state *state, char *map)
 		parse_row(rows, i, state);
 		i++;
 	}
+	free_split(rows);
 }
 
 char	*read_file(t_state *state, const char *file_path)
