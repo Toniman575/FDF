@@ -2,18 +2,18 @@ NAME		= fdf
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)
-MLXFLAGS = -lmlx -lXext -lX11
-LDFLAGS = -L$(LIBFT_DIR) -lft
-SRCS = fdf.c read_parse.c setup.c utils.c
-OBJS = $(SRCS:.c=.o)
-DEPS = $(OBJS:.o=.d)
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)
+MLXFLAGS	= -lmlx -lXext -lX11
+LDFLAGS		= -L$(LIBFT_DIR) -lft
+SRCS		= drawing.c fdf.c line_drawing_utils.c math_utils.c read_parse.c setup.c utils.c
+OBJS		= $(SRCS:.c=.o)
+DEPS		= $(OBJS:.o=.d)
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) -lm $(LDFLAGS) -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)

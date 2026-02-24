@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 17:19:09 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/24 20:25:32 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,20 @@ int	abs(int a)
 	return (a);
 }
 
-t_world_coord	round_point(double x, double y)
+t_screen_coord	round_point(double x, double y)
 {
-	t_world_coord	point;
+	t_screen_coord	point;
 
 	point.x = round(x);
 	point.y = round(y);
 	return (point);
+}
+
+t_screen_coord	world_to_screen(t_world_coord coord)
+{
+	t_screen_coord	new;
+
+	new.x = (int)round(coord.x);
+	new.y = (int)round(coord.x);
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 17:03:03 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/24 19:43:01 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ typedef struct s_screen_coord
 	int	y;
 }				t_screen_coord;
 
+typedef struct s_line
+{
+	t_screen_coord	*points;
+	int				length;
+}				t_line;
+
 typedef struct s_point
 {
 	t_world_coord	coord;
@@ -54,6 +60,7 @@ typedef struct s_world
 	int		height;
 	int		scale;
 	t_point	*points;
+	int		points_n;
 }				t_world;
 
 typedef struct s_state

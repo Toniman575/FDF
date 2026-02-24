@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/11 15:22:22 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 17:18:06 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/24 20:31:08 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ int	main(int varc, char **argv)
 		return (0);
 	state = init_state();
 	setup(&state, argv[1]);
+	draw_lines(&state);
+	render(&state.mlx);
 	mlx_loop(state.mlx.mlx_ptr);
 }

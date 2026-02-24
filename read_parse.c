@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 14:31:50 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/24 20:54:41 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ int	parse_col(char **row, int row_i, int col_i, t_state *state)
 	else
 	{
 		state->world.points[row_i].coord = new_world_coord(
-				col_i * state->world.scale,
-				row_i * state->world.scale, ft_atoi(row[col_i]));
+				(col_i * state->world.scale),
+				(row_i * state->world.scale),
+				ft_atoi(row[col_i]));
 		state->world.points[row_i].color = 0;
 	}
 	return (1);
@@ -60,7 +61,7 @@ void	parse_row(char **rows, int row_i, t_state *state)
 	col_i = 0;
 	while (row[col_i])
 	{
-		if (!parse_col(row, row_i * state->world.width + col_i, col_i, state))
+		if (!parse_col(row, row_i, col_i, state))
 		{
 			free_split(rows);
 			handle_exit(state);
