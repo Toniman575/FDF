@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   math_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 15:22:22 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 17:18:06 by asadik           ###   ########.fr       */
+/*   Created: 2026/02/24 17:15:18 by asadik            #+#    #+#             */
+/*   Updated: 2026/02/24 17:20:42 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#ifndef MATH_UTILS_H
+# define MATH_UTILS_H
 
-#include "types.h"
-#include "utils.h"
+# include "types.h"
 
-int	main(int varc, char **argv)
-{
-	t_state		state;
-
-	if (varc != 2)
-		return (0);
-	state = init_state();
-	setup(&state, argv[1]);
-	mlx_loop(state.mlx.mlx_ptr);
-}
+int				max(int a, int b);
+int				abs(int a);
+t_world_coord	round_point(double x, double y);
+#endif

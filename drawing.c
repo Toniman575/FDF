@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/11 15:22:22 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 17:18:06 by asadik           ###   ########.fr       */
+/*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
+/*   Updated: 2026/02/24 17:18:41 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 
 #include "types.h"
-#include "utils.h"
 
-int	main(int varc, char **argv)
+void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
 {
-	t_state		state;
+	char	*dst;
 
-	if (varc != 2)
-		return (0);
-	state = init_state();
-	setup(&state, argv[1]);
-	mlx_loop(state.mlx.mlx_ptr);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+void	render(t_mlx_data *data)
+{
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->image.img, 0, 0);
 }
