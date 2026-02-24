@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:13:55 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 20:00:20 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/24 22:48:20 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static double	lerp(double start, double end, double t)
 	return (start * ((double)1.0 - t) + t * end);
 }
 
-static t_screen_coord	lerp_point(t_screen_coord start, t_screen_coord end, double t)
+static t_screen_coord	lerp_point(t_screen_coord start, t_screen_coord end,
+	double t)
 {
 	double	x;
 	double	y;
@@ -49,15 +50,15 @@ t_line	get_line(t_state *state, t_screen_coord start, t_screen_coord end)
 
 	i = 0;
 	line.length = diagonal_distance(start, end);
-	line.points = calloc(line.length, sizeof(t_world_coord));
+	line.points = calloc(line.length + 1, sizeof(t_world_coord));
 	if (!line.points)
 		handle_exit(state);
-	while (i < line.length)
+	while (i <= line.length)
 	{
-		if (line.length == 0)
+		if (line.length == 0 || i == 0)
 			t = 0.0;
 		else
-			t = (double)i / t;
+			t = (double)i / line.length;
 		line.points[i] = lerp_point(start, end, t);
 		i++;
 	}

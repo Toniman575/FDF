@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 20:54:41 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/24 23:01:10 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,106 +14,125 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#include "libft/get_next_line/get_next_line.h"
 #include "types.h"
+#include "read_parse_utils.h"
 #include "libft/libft.h"
 #include "utils.h"
 
-int	parse_col(char **row, int row_i, int col_i, t_state *state)
+static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 {
 	char	**hac;
+	int		index;
 
-	if (ft_strchr(row[col_i], ','))
+	index = get_index(row_i, col_i, state);
+	if (ft_strchr(col, ','))
 	{
-		hac = ft_split(row[col_i], ',');
+		hac = ft_split(col, ',');
 		if (!hac)
 		{
-			free_split(row);
+			free_split(hac);
 			return (0);
 		}
-		state->world.points[row_i].coord = new_world_coord(
-				col_i * state->world.scale,
-				row_i * state->world.scale, ft_atoi(hac[0]));
-		state->world.points[row_i].color = ft_atoi_hex();
+		state->world.points[index].coord = new_world_coord(col_i * state->world
+				.scale, row_i * state->world.scale, ft_atoi(hac[0]));
+		state->world.points[index].color = ft_atoi_hex();
 		free_split(hac);
 	}
 	else
 	{
-		state->world.points[row_i].coord = new_world_coord(
-				(col_i * state->world.scale),
-				(row_i * state->world.scale),
-				ft_atoi(row[col_i]));
-		state->world.points[row_i].color = 0;
+		state->world.points[index].coord = new_world_coord(col_i * state->world
+				.scale, row_i * state->world.scale, ft_atoi(&col[col_i]));
+		state->world.points[index].color = 0;
 	}
 	return (1);
 }
 
-void	parse_row(char **rows, int row_i, t_state *state)
+static void	realloc_points(t_state *state, t_point *temp_points, int cols_n)
 {
-	char	**row;
-	int		col_i;
-
-	row = ft_split(rows[row_i], ' ');
-	if (!row)
+	temp_points = calloc(state->world.points_n, sizeof(t_point));
+	ft_memcpy(temp_points, state->world.points, sizeof(t_point)
+		* (state->world.points_n));
+	if (!temp_points)
+		handle_exit(state);
+	free(state->world.points);
+	state->world.points = calloc(state->world.points_n + cols_n,
+			sizeof(t_point));
+	if (!state->world.points)
 	{
-		free_split(rows);
+		free(temp_points);
 		handle_exit(state);
 	}
-	col_i = 0;
-	while (row[col_i])
+	ft_memcpy(state->world.points, temp_points, sizeof(t_point)
+		* (state->world.points_n));
+	free(temp_points);
+}
+
+static void	prepare_points(t_state *state, char **cols)
+{
+	int		cols_n;
+	t_point	*temp_points;
+
+	temp_points = NULL;
+	cols_n = split_n(cols);
+	if (!state->world.points)
 	{
-		if (!parse_col(row, row_i, col_i, state))
+		state->world.points = calloc(cols_n, sizeof(t_point));
+		if (!state->world.points)
+			handle_exit(state);
+	}
+	else
+		realloc_points(state, temp_points, cols_n);
+}
+
+void	parse_row(char *row, int row_i, t_state *state)
+{
+	int		col_i;
+	char	**cols;
+
+	cols = ft_split(row, ' ');
+	if (!cols)
+	{
+		free_split(cols);
+		handle_exit(state);
+	}
+	prepare_points(state, cols);
+	col_i = 0;
+	while (cols[col_i])
+	{
+		if (!parse_col(cols[col_i], row_i, col_i, state))
 		{
-			free_split(rows);
+			free_split(cols);
 			handle_exit(state);
 		}
 		col_i++;
 	}
-	free_split(row);
+	state->world.points_n += col_i;
+	state->world.width = col_i;
+	free_split(cols);
 }
 
-void	parse_map(t_state *state, char *map)
-{
-	char	**rows;
-	int		i;
-
-	rows = ft_split(map, '\n');
-	if (!rows)
-		handle_exit(state);
-	prepare_world(rows, state);
-	i = 0;
-	while (rows[i])
-	{
-		parse_row(rows, i, state);
-		i++;
-	}
-	free_split(rows);
-}
-
-char	*read_file(t_state *state, const char *file_path)
+void	read_file(t_state *state, const char *file_path)
 {
 	int		fd;
+	int		row_i;
 	char	*new_line;
-	char	*map;
 
-	map = ft_calloc(1, 1);
-	if (!map)
-		handle_exit(state);
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
 		handle_exit(state);
 	new_line = get_next_line_single(fd);
 	if (!new_line)
 		handle_exit(state);
+	row_i = 0;
 	while (new_line)
 	{
-		map = ft_strjoin(map, new_line);
-		if (!map)
-		{
-			free(new_line);
-			handle_exit(state);
-		}
+		parse_row(new_line, row_i, state);
+		row_i++;
+		free(new_line);
 		new_line = get_next_line_single(fd);
 	}
+	state->world.height = row_i;
+	free(new_line);
 	close(fd);
-	return (map);
 }

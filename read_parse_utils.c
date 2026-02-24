@@ -1,44 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.c                                       :+:      :+:    :+:   */
+/*   read_parse_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 22:48:08 by asadik           ###   ########.fr       */
+/*   Created: 2026/02/24 22:40:09 by asadik            #+#    #+#             */
+/*   Updated: 2026/02/24 22:42:02 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "types.h"
 
-#include <math.h>
-
-int	max(int a, int b)
+int	get_index(int row_i, int col_i, const t_state *state)
 {
-	if (a < b)
-		return (b);
-	else
-		return (a);
+	return (row_i * state->world.width + col_i);
 }
 
-int	abs(int a)
+int	split_n(char **cols)
 {
-	if (a < 0)
-		a = -a;
-	return (a);
-}
+	int		cols_n;
 
-t_screen_coord	round_point(double x, double y)
-{
-	t_screen_coord	point;
-
-	point.x = round(x);
-	point.y = round(y);
-	return (point);
-}
-
-t_screen_coord	world_to_screen(t_world_coord coord)
-{
-	return (round_point(coord.x, coord.y));
+	cols_n = 0;
+	while (cols[cols_n])
+		cols_n++;
+	return (cols_n);
 }
