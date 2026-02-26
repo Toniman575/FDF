@@ -6,12 +6,23 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/26 15:52:44 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/26 18:15:33 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
+
+#include <stdbool.h> 
+
+typedef enum e_key
+{
+	ARROW_LEFT,
+	ARROW_UP,
+	ARROW_RIGHT,
+	ARROW_DOWN,
+	COUNT
+}				t_key;
 
 typedef struct s_image
 {
@@ -80,5 +91,6 @@ typedef struct s_state
 	t_world			world;
 	t_camera		camera;
 	t_window_size	window_size;
+	bool			key_states[COUNT];
 }				t_state;
 #endif

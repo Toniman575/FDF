@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:22:24 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 22:47:22 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/26 18:30:15 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int				ft_atoi_hex(void);
 t_line			get_line(t_state *state, t_screen_coord start,
 					t_screen_coord end);
 void			draw_lines(t_state *state);
-void			render(t_mlx_data *data);
+void			render(t_state *data);
 
 #endif
