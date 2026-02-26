@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:52 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 20:38:05 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/26 15:29:57 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,16 @@ void	free_split(char **str)
 
 void	handle_exit(t_state *state)
 {
-	mlx_destroy_image(state->mlx.mlx_ptr, state->mlx.image.img);
-	state->mlx.image.addr = NULL;
-	mlx_destroy_window(state->mlx.mlx_ptr, state->mlx.win_ptr);
-	state->mlx.win_ptr = NULL;
+	if (state->mlx.image.img)
+	{
+		mlx_destroy_image(state->mlx.mlx_ptr, state->mlx.image.img);
+		state->mlx.image.addr = NULL;
+	}
+	if (state->mlx.win_ptr)
+	{
+		mlx_destroy_window(state->mlx.mlx_ptr, state->mlx.win_ptr);
+		state->mlx.win_ptr = NULL;
+	}
 	free(state->world.points);
 	state->world.points = NULL;
 	free(state->mlx.mlx_ptr);

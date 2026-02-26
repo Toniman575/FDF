@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 23:01:10 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/26 15:43:10 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 			return (0);
 		}
 		state->world.points[index].coord = new_world_coord(col_i * state->world
-				.scale, row_i * state->world.scale, ft_atoi(hac[0]));
+				.spacing, row_i * state->world.spacing, ft_atoi(hac[0]));
 		state->world.points[index].color = ft_atoi_hex();
 		free_split(hac);
 	}
 	else
 	{
 		state->world.points[index].coord = new_world_coord(col_i * state->world
-				.scale, row_i * state->world.scale, ft_atoi(&col[col_i]));
+				.spacing, row_i * state->world.spacing, ft_atoi(&col[col_i]));
 		state->world.points[index].color = 0;
 	}
 	return (1);

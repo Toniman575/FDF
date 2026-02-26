@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 22:50:05 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/26 15:41:50 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ void	draw_lines(t_state *state)
 	line.points = NULL;
 	while (i < state->world.points_n)
 	{
-		start = world_to_screen(state->world.points[i].coord);
+		start = world_to_screen(state->world.points[i].coord, &state->camera);
 		if ((i + 1) % state->world.width != 0)
 		{
-			end = world_to_screen(state->world.points[i + 1].coord);
+			end = world_to_screen(state->world.points[i + 1].coord, &state->camera);
 			line = get_line(state, start, end);
 			put_line(&state->mlx.image, &line);
 		}
 		if (i / state->world.height < state->world.height - 1)
 		{
 			end = world_to_screen(state->world.points[i
-					+ state->world.width].coord);
+					+ state->world.width].coord, &state->camera);
 			line = get_line(state, start, end);
 			put_line(&state->mlx.image, &line);
 		}

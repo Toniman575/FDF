@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 22:39:18 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/26 16:00:30 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ t_state	init_state(void)
 	state.mlx.win_ptr = NULL;
 	state.world.height = 0;
 	state.world.width = 0;
-	state.world.scale = 20;
+	state.world.spacing = 20;
 	state.world.points = NULL;
 	state.world.points_n = 0;
+	state.camera.pos = new_world_coord(0., 0., 0.);
+	state.window_size.width = 500;
+	state.window_size.height = 500;
 	return (state);
 }
 

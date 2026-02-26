@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 19:43:01 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/26 15:52:44 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,27 @@ typedef struct s_world
 {
 	int		width;
 	int		height;
-	int		scale;
+	int		spacing;
 	t_point	*points;
 	int		points_n;
 }				t_world;
 
+typedef struct s_camera
+{
+	t_world_coord	pos;
+}				t_camera;
+
+typedef struct s_window_size
+{
+	int	width;
+	int	height;
+}				t_window_size;
+
 typedef struct s_state
 {
-	t_mlx_data	mlx;
-	t_world		world;
+	t_mlx_data		mlx;
+	t_world			world;
+	t_camera		camera;
+	t_window_size	window_size;
 }				t_state;
 #endif

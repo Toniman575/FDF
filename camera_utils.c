@@ -1,44 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   math_utils.c                                       :+:      :+:    :+:   */
+/*   camera_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/26 14:44:35 by asadik           ###   ########.fr       */
+/*   Created: 2026/02/26 15:45:20 by asadik            #+#    #+#             */
+/*   Updated: 2026/02/26 16:18:44 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "types.h"
 
-#include <math.h>
-
-int	max(int a, int b)
+void	center_camera(t_state *state)
 {
-	if (a < b)
-		return (b);
-	else
-		return (a);
-}
+	double	world_half_x;
+	double	world_half_y;
 
-int	abs(int a)
-{
-	if (a < 0)
-		a = -a;
-	return (a);
-}
-
-t_screen_coord	round_point(double x, double y)
-{
-	t_screen_coord	point;
-
-	point.x = round(x);
-	point.y = round(y);
-	return (point);
-}
-
-t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera)
-{
-	return (round_point(coord.x - camera->pos.x, coord.y - camera->pos.y));
+	world_half_x = (state->world.width - 1) * state->world.spacing / 2;
+	world_half_y = (state->world.height - 1) * state->world.spacing / 2;
+	state->camera.pos.x = -(state->window_size.width / 2 - world_half_x);
+	state->camera.pos.y = -(state->window_size.height / 2 - world_half_x);
 }

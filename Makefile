@@ -7,7 +7,7 @@ CFLAGS =	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)
 MLXFLAGS =	-lmlx -lXext -lX11
 LDFLAGS =	-L$(LIBFT_DIR) -lft
 SRCS =		drawing.c fdf.c line_drawing_utils.c math_utils.c \
-			read_parse_utils.c read_parse.c setup.c utils.c
+			read_parse_utils.c read_parse.c setup.c utils.c camera_utils.c
 OBJS =		$(SRCS:.c=.o)
 DEPS =		$(OBJS:.o=.d)
 
