@@ -6,14 +6,16 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/26 18:15:33 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/27 20:23:46 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-#include <stdbool.h> 
+# include <bits/types/struct_timeval.h>
+# include <stdbool.h>
+# include <sys/time.h>
 
 typedef enum e_key
 {
@@ -77,6 +79,7 @@ typedef struct s_world
 typedef struct s_camera
 {
 	t_world_coord	pos;
+	double			speed;
 }				t_camera;
 
 typedef struct s_window_size
@@ -91,6 +94,7 @@ typedef struct s_state
 	t_world			world;
 	t_camera		camera;
 	t_window_size	window_size;
+	struct timeval	timestamp;
 	bool			key_states[COUNT];
 }				t_state;
 #endif

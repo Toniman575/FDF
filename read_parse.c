@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/26 15:43:10 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/27 21:06:13 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,22 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 	return (1);
 }
 
-static void	realloc_points(t_state *state, t_point *temp_points, int cols_n)
+static void	realloc_points(t_state *state, t_point *temp_points, int cols_n, int fd)
 {
 	temp_points = calloc(state->world.points_n, sizeof(t_point));
 	ft_memcpy(temp_points, state->world.points, sizeof(t_point)
 		* (state->world.points_n));
 	if (!temp_points)
+	{
+		close(fd);
 		handle_exit(state);
+	}
 	free(state->world.points);
 	state->world.points = calloc(state->world.points_n + cols_n,
 			sizeof(t_point));
 	if (!state->world.points)
 	{
+		close(fd);
 		free(temp_points);
 		handle_exit(state);
 	}
@@ -68,7 +72,7 @@ static void	realloc_points(t_state *state, t_point *temp_points, int cols_n)
 	free(temp_points);
 }
 
-static void	prepare_points(t_state *state, char **cols)
+static void	prepare_points(t_state *state, char **cols, int fd)
 {
 	int		cols_n;
 	t_point	*temp_points;
@@ -79,13 +83,16 @@ static void	prepare_points(t_state *state, char **cols)
 	{
 		state->world.points = calloc(cols_n, sizeof(t_point));
 		if (!state->world.points)
+		{
+			close(fd);
 			handle_exit(state);
+		}
 	}
 	else
-		realloc_points(state, temp_points, cols_n);
+		realloc_points(state, temp_points, cols_n, fd);
 }
 
-void	parse_row(char *row, int row_i, t_state *state)
+void	parse_row(char *row, int row_i, t_state *state, int fd)
 {
 	int		col_i;
 	char	**cols;
@@ -94,15 +101,17 @@ void	parse_row(char *row, int row_i, t_state *state)
 	if (!cols)
 	{
 		free_split(cols);
+		close(fd);
 		handle_exit(state);
 	}
-	prepare_points(state, cols);
+	prepare_points(state, cols, fd);
 	col_i = 0;
 	while (cols[col_i])
 	{
 		if (!parse_col(cols[col_i], row_i, col_i, state))
 		{
 			free_split(cols);
+			close(fd);
 			handle_exit(state);
 		}
 		col_i++;
@@ -123,11 +132,14 @@ void	read_file(t_state *state, const char *file_path)
 		handle_exit(state);
 	new_line = get_next_line_single(fd);
 	if (!new_line)
+	{
+		close(fd);
 		handle_exit(state);
+	}
 	row_i = 0;
 	while (new_line)
 	{
-		parse_row(new_line, row_i, state);
+		parse_row(new_line, row_i, state, fd);
 		row_i++;
 		free(new_line);
 		new_line = get_next_line_single(fd);

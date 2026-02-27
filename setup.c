@@ -6,15 +6,28 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/26 16:00:30 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/27 21:10:01 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdio.h>
+#include <sys/time.h>
 
 #include "types.h"
 #include "utils.h"
+
+void	init_key_states(t_state *state)
+{
+	int	i;
+
+	i = 0;
+	while (i < COUNT)
+	{
+		state->key_states[i] = false;
+		i++;
+	}
+}
 
 t_state	init_state(void)
 {
@@ -33,8 +46,12 @@ t_state	init_state(void)
 	state.world.points = NULL;
 	state.world.points_n = 0;
 	state.camera.pos = new_world_coord(0., 0., 0.);
+	state.camera.speed = 100.0;
 	state.window_size.width = 500;
 	state.window_size.height = 500;
+	state.timestamp.tv_sec = 0;
+	state.timestamp.tv_usec = 0;
+	init_key_states(&state);
 	return (state);
 }
 
@@ -47,9 +64,13 @@ void	setup(t_state *state, const char *file_path)
 	if (!state->mlx.win_ptr)
 		handle_exit(state);
 	state->mlx.image.img = mlx_new_image(state->mlx.mlx_ptr, 500, 500);
+	if (!state->mlx.image.img)
+		handle_exit(state);
 	state->mlx.image.addr = mlx_get_data_addr(state->mlx.image.img,
 			&state->mlx.image.bits_per_pixel, &state->mlx.image.line_length,
 			&state->mlx.image.endian);
 	state->mlx.image = state->mlx.image;
+	if (gettimeofday(&state->timestamp, NULL) < 0)
+		handle_exit(state);
 	read_file(state, file_path);
 }

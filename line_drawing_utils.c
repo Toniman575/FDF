@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:13:55 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/24 22:48:20 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/27 20:31:07 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "math_utils.h"
 #include "utils.h"
 
+#include <mlx.h>
 #include <stdlib.h>
 
 static int	diagonal_distance(t_screen_coord start, t_screen_coord end)
@@ -52,7 +53,7 @@ t_line	get_line(t_state *state, t_screen_coord start, t_screen_coord end)
 	line.length = diagonal_distance(start, end);
 	line.points = calloc(line.length + 1, sizeof(t_world_coord));
 	if (!line.points)
-		handle_exit(state);
+		mlx_loop_end(state->mlx.mlx_ptr);
 	while (i <= line.length)
 	{
 		if (line.length == 0 || i == 0)

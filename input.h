@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_utils.h                                     :+:      :+:    :+:   */
+/*   input.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/26 15:45:30 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 19:15:38 by asadik           ###   ########.fr       */
+/*   Created: 2026/02/27 20:26:24 by asadik            #+#    #+#             */
+/*   Updated: 2026/02/27 20:27:09 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_UTILS_H
-# define CAMERA_UTILS_H
+#ifndef INPUT_H
+# define INPUT_H
 
-# include "types.h"
-
-void	center_camera(t_state *state);
-void	pan_camera(t_state *state, double delta);
+#include "types.h"
+t_key	get_key_index(int keycode);
+int	key_down(int keycode, t_state *state);
+int	key_up(int keycode, t_state *state);
 
 #endif
