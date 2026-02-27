@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 21:06:13 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/27 21:23:54 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 	return (1);
 }
 
-static void	realloc_points(t_state *state, t_point *temp_points, int cols_n, int fd)
+static void	realloc_points(t_state *state, t_point *temp_points, int cols_n,
+	int fd)
 {
 	temp_points = calloc(state->world.points_n, sizeof(t_point));
 	ft_memcpy(temp_points, state->world.points, sizeof(t_point)
