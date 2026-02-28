@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 18:23:31 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:43:33 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,18 @@ typedef struct s_world
 	int		points_n;
 }				t_world;
 
+typedef struct s_quaternion
+{
+	double	w;
+	double	x;
+	double	y;
+	double	z;
+}				t_quaternion;
+
 typedef struct s_camera
 {
 	t_world_coord	pos;
+	t_quaternion	rotation;
 	double			speed;
 }				t_camera;
 

@@ -6,14 +6,13 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:38:17 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:49:16 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdlib.h>
 
-#include "math_utils.h"
 #include "utils.h"
 #include "camera_utils.h"
 

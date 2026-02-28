@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:45:30 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 19:15:38 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:49:04 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "types.h"
 
-void	center_camera(t_state *state);
-void	pan_camera(t_state *state, double delta);
+void			center_camera(t_state *state);
+void			pan_camera(t_state *state, double delta);
+t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera);
 
 #endif

@@ -6,13 +6,31 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:45:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:35:26 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:49:09 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 
+#include "math_utils.h"
 #include "types.h"
+
+t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera)
+{
+	t_world_coord	rel;
+	t_world_coord	rot;
+	t_quaternion	inv_rot;
+
+	rel.x = coord.x - camera->pos.x;
+	rel.y = coord.y - camera->pos.y;
+	rel.z = coord.z - camera->pos.z;
+	inv_rot = camera->rotation;
+	inv_rot.x = -inv_rot.x;
+	inv_rot.y = -inv_rot.y;
+	inv_rot.z = -inv_rot.z;
+	rot = rotate_vector(rel, inv_rot);
+	return (round_point(rot.x, rot.y));
+}
 
 void	center_camera(t_state *state)
 {

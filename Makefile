@@ -6,9 +6,9 @@ CC =		cc
 CFLAGS =	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)
 MLXFLAGS =	-lmlx -lXext -lX11
 LDFLAGS =	-L$(LIBFT_DIR) -lft
-SRCS =		drawing.c fdf.c line_drawing_utils.c math_utils.c \
-			read_parse_utils.c read_parse.c setup.c utils.c camera_utils.c \
-			input.c
+SRCS =		camera_utils.c drawing.c fdf.c input.c line_drawing_utils.c \
+			math_utils.c quaternion.c read_parse.c read_parse_utils.c \
+			setup.c utils.c
 OBJS =		$(SRCS:.c=.o)
 DEPS =		$(OBJS:.o=.d)
 
