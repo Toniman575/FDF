@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 20:03:07 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 20:32:39 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_camera
 {
 	t_world_coord	pos;
 	t_quaternion	rotation;
+	double			zoom;
 	double			speed;
 }				t_camera;
 

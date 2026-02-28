@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:26:24 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:04:54 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 20:32:36 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 t_key	get_key_index(int keycode);
 int		key_down(int keycode, t_state *state);
 int		key_up(int keycode, t_state *state);
+int		button_down(int button, int x, int y, t_state *state);
 
 #endif
