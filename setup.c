@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 21:10:01 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:03:18 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	setup(t_state *state, const char *file_path)
 	state->mlx.image.addr = mlx_get_data_addr(state->mlx.image.img,
 			&state->mlx.image.bits_per_pixel, &state->mlx.image.line_length,
 			&state->mlx.image.endian);
-	state->mlx.image = state->mlx.image;
 	if (gettimeofday(&state->timestamp, NULL) < 0)
 		handle_exit(state);
 	read_file(state, file_path);

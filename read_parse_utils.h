@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:41:08 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 17:55:49 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:26:48 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 
 # include "types.h"
 
-int	get_index(int row_i, int col_i, const t_state *state);
 int	split_n(char **cols);
 
 #endif

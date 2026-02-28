@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:45:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 18:04:22 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 18:24:21 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@ void	center_camera(t_state *state)
 	double	world_half_x;
 	double	world_half_y;
 
-	world_half_x = ((double)state->world.width - 1.) * (double)state->world.spacing / 2.;
-	world_half_y = ((double)state->world.height - 1.) * (double)state->world.spacing / 2.;
-	state->camera.pos.x = -((double)state->window_size.width / 2. - world_half_x);
-	state->camera.pos.y = -((double)state->window_size.height / 2. - world_half_x);
+	world_half_x = ((double)state->world.width - 1.)
+		* (double)state->world.spacing / 2.;
+	world_half_y = ((double)state->world.height - 1.)
+		* (double)state->world.spacing / 2.;
+	state->camera.pos.x = -((double)state->window_size.width
+			/ 2. - world_half_x);
+	state->camera.pos.y = -((double)state->window_size.height
+			/ 2. - world_half_x);
 }
 
 void	pan_camera(t_state *state, double delta)

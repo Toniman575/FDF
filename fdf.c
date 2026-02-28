@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 18:38:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 17:51:10 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:04:23 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static void	register_hooks(t_state *state)
 	mlx_loop_hook(state->mlx.mlx_ptr, render, state);
 }
 
-int	main(int varc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_state		state;
 
-	if (varc != 2)
+	if (argc != 2)
 		return (0);
 	state = init_state();
 	setup(&state, argv[1]);

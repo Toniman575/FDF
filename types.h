@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 17:55:17 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 18:23:31 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ typedef struct s_state
 	struct timeval	timestamp;
 	bool			key_states[COUNT];
 }				t_state;
+
 #endif

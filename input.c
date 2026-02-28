@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:25:42 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 17:51:55 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:04:51 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	key_up(int keycode, t_state *state)
 	int	key;
 
 	key = get_key_index(keycode);
-	if (key < 0)
+	if (key == -2)
 		return (0);
 	state->key_states[key] = false;
 	return (1);

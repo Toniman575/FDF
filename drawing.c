@@ -6,11 +6,10 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 17:51:29 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:02:35 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <bits/types/struct_timeval.h>
 #include <mlx.h>
 #include <stdlib.h>
 

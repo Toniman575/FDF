@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:13:55 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 17:53:07 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:03:42 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_line	get_line(t_state *state, t_screen_coord start, t_screen_coord end)
 
 	i = 0;
 	line.length = diagonal_distance(start, end);
-	line.points = ft_calloc(line.length + 1, sizeof(t_world_coord));
+	line.points = ft_calloc(line.length + 1, sizeof(t_screen_coord));
 	if (!line.points)
 		mlx_loop_end(state->mlx.mlx_ptr);
 	while (i <= line.length)
