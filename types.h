@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 20:32:39 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 22:01:53 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef enum e_key
 	ARROW_UP,
 	ARROW_RIGHT,
 	ARROW_DOWN,
+	KEY_Q,
+	KEY_E,
 	COUNT
 }				t_key;
 
@@ -92,20 +94,21 @@ typedef struct s_camera
 	double			speed;
 }				t_camera;
 
-typedef struct s_window_size
+typedef struct s_cursor
 {
-	int	width;
-	int	height;
-}				t_window_size;
+	t_screen_coord	pos;
+	bool			pressed;
+}				t_cursor;
 
 typedef struct s_state
 {
 	t_mlx_data		mlx;
 	t_world			world;
 	t_camera		camera;
-	t_window_size	window_size;
+	t_screen_coord	window_size;
 	struct timeval	timestamp;
 	bool			key_states[COUNT];
+	t_cursor		cursor_state;
 }				t_state;
 
 #endif

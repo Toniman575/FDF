@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:22:24 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 17:55:35 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 22:28:38 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int				ft_atoi_hex(void);
 t_line			get_line(t_state *state, t_screen_coord start,
 					t_screen_coord end);
 int				render(t_state *data);
+t_quaternion	track_ball(t_screen_coord delta, t_state *state);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 20:32:37 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 22:58:00 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	init_key_states(t_state *state)
 		state->key_states[i] = false;
 		i++;
 	}
+	state->cursor_state.pressed = false;
+	state->cursor_state.pos.x = 0;
+	state->cursor_state.pos.y = 0;
 }
 
 void	init_camera(t_state *state)
@@ -35,7 +38,7 @@ void	init_camera(t_state *state)
 	state->camera.rotation.w = 0.880476;
 	state->camera.rotation.x = -0.279848;
 	state->camera.rotation.y = 0.115917;
-	state->camera.rotation.z = 0.364705;
+	state->camera.rotation.z = -0.364705;
 	state->camera.speed = 100.0;
 	state->camera.zoom = 1.0;
 }
@@ -54,12 +57,12 @@ t_state	init_state(void)
 	state.world.height = 0;
 	state.world.width = 0;
 	state.world.spacing = 20;
-	state.world.height_scale = 10;
+	state.world.height_scale = 5;
 	state.world.points = NULL;
 	state.world.points_n = 0;
 	init_camera(&state);
-	state.window_size.width = 500;
-	state.window_size.height = 500;
+	state.window_size.x = 500;
+	state.window_size.y = 500;
 	state.timestamp.tv_sec = 0;
 	state.timestamp.tv_usec = 0;
 	init_key_states(&state);

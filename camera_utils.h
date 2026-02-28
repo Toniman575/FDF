@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:45:30 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:49:04 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 22:28:08 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 void			center_camera(t_state *state);
 void			pan_camera(t_state *state, double delta);
-t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera);
+void			rotate_camera(t_state *state, double delta);
+void			zoom_camera(t_state *state, int button, int x, int y);
+void			drag_camera(t_screen_coord	delta, t_state *state);
 
 #endif

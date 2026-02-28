@@ -6,13 +6,14 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:49:16 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 22:58:32 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdlib.h>
 
+#include "math_utils.h"
 #include "utils.h"
 #include "camera_utils.h"
 
@@ -33,19 +34,16 @@ static void	draw_line(t_state *state, t_screen_coord start, t_screen_coord end)
 	int		i;
 
 	i = 0;
-	line.points = NULL;
 	line = get_line(state, start, end);
 	while (i <= line.length)
 	{
-		if (line.points[i].x < state->window_size.width && line.points[i].y
-			< state->window_size.height && line.points[i].x >= 0
+		if (line.points[i].x < state->window_size.x && line.points[i].y
+			< state->window_size.y && line.points[i].x >= 0
 			&& line.points[i].y >= 0)
 			my_mlx_pixel_put(&state->mlx.image, line.points[i], 0xFFFFFF);
 		i++;
 	}
 	free(line.points);
-	line.points = NULL;
-	line.length = 0;
 }
 
 static void	draw_lines(t_state *state)
@@ -80,9 +78,9 @@ static void	clear_image(t_state *state)
 
 	current.x = 0;
 	current.y = 0;
-	while (current.y < state->window_size.height)
+	while (current.y < state->window_size.y)
 	{
-		while (current.x < state->window_size.width)
+		while (current.x < state->window_size.x)
 		{
 			my_mlx_pixel_put(&state->mlx.image, current, 0x000000);
 			current.x++;
@@ -107,6 +105,7 @@ int	render(t_state *state)
 		+ (double)(ct.tv_usec - state->timestamp.tv_usec) / 1000000;
 	state->timestamp = ct;
 	pan_camera(state, delta);
+	rotate_camera(state, delta);
 	draw_lines(state);
 	mlx_put_image_to_window(state->mlx.mlx_ptr, state->mlx.win_ptr,
 		state->mlx.image.img, 0, 0);
