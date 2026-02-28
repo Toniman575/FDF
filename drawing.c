@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:02:35 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 19:38:17 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	draw_lines(t_state *state)
 					+ 1].coord, &state->camera);
 			draw_line(state, start, end);
 		}
-		if (i / state->world.height < state->world.height - 1)
+		if (i + state->world.width < state->world.points_n)
 		{
 			end = world_to_screen(state->world.points[i
 					+ state->world.width].coord, &state->camera);
