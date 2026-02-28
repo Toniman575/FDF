@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:43:33 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 20:03:07 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_world
 	int		width;
 	int		height;
 	int		spacing;
+	int		height_scale;
 	t_point	*points;
 	int		points_n;
 }				t_world;

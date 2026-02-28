@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:41:08 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:26:48 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 20:18:06 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 
 # include "types.h"
 
-int	split_n(char **cols);
+int				split_n(char **cols);
+t_world_coord	init_world_coord(int col_i, int row_i, char *height,
+					t_state *state);
 
 #endif

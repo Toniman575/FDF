@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:45:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:49:09 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 20:10:42 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,28 @@ void	center_camera(t_state *state)
 void	pan_camera(t_state *state, double delta)
 {
 	t_world_coord	direction;
+	t_world_coord	move;
 	double			length;
 
 	direction.x = 0;
 	direction.y = 0;
+	direction.z = 0;
 	if (state->key_states[ARROW_LEFT])
 		direction.x += 1;
 	if (state->key_states[ARROW_UP])
-		direction.y += 1;
+		direction.y -= 1;
 	if (state->key_states[ARROW_RIGHT])
 		direction.x -= 1;
 	if (state->key_states[ARROW_DOWN])
-		direction.y -= 1;
+		direction.y += 1;
 	if (direction.x != 0 || direction.y != 0)
 	{
 		length = sqrt(direction.x * direction.x + direction.y * direction.y);
 		direction.x /= length;
 		direction.y /= length;
-		state->camera.pos.x += direction.x * delta * state->camera.speed;
-		state->camera.pos.y += direction.y * delta * state->camera.speed;
+		move = rotate_vector(direction, state->camera.rotation);
+		state->camera.pos.x += move.x * delta * state->camera.speed;
+		state->camera.pos.y += move.y * delta * state->camera.speed;
+		state->camera.pos.z += move.z * delta * state->camera.speed;
 	}
 }
