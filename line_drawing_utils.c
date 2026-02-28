@@ -6,16 +6,14 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:13:55 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 20:31:07 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:53:07 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "types.h"
+#include "libft/libft.h"
 #include "math_utils.h"
-#include "utils.h"
 
 #include <mlx.h>
-#include <stdlib.h>
 
 static int	diagonal_distance(t_screen_coord start, t_screen_coord end)
 {
@@ -51,7 +49,7 @@ t_line	get_line(t_state *state, t_screen_coord start, t_screen_coord end)
 
 	i = 0;
 	line.length = diagonal_distance(start, end);
-	line.points = calloc(line.length + 1, sizeof(t_world_coord));
+	line.points = ft_calloc(line.length + 1, sizeof(t_world_coord));
 	if (!line.points)
 		mlx_loop_end(state->mlx.mlx_ptr);
 	while (i <= line.length)

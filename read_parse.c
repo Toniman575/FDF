@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 21:23:54 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:54:46 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "libft/get_next_line/get_next_line.h"
-#include "types.h"
 #include "read_parse_utils.h"
 #include "libft/libft.h"
 #include "utils.h"
@@ -51,7 +49,7 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 static void	realloc_points(t_state *state, t_point *temp_points, int cols_n,
 	int fd)
 {
-	temp_points = calloc(state->world.points_n, sizeof(t_point));
+	temp_points = ft_calloc(state->world.points_n, sizeof(t_point));
 	ft_memcpy(temp_points, state->world.points, sizeof(t_point)
 		* (state->world.points_n));
 	if (!temp_points)
@@ -60,7 +58,7 @@ static void	realloc_points(t_state *state, t_point *temp_points, int cols_n,
 		handle_exit(state);
 	}
 	free(state->world.points);
-	state->world.points = calloc(state->world.points_n + cols_n,
+	state->world.points = ft_calloc(state->world.points_n + cols_n,
 			sizeof(t_point));
 	if (!state->world.points)
 	{
@@ -82,7 +80,7 @@ static void	prepare_points(t_state *state, char **cols, int fd)
 	cols_n = split_n(cols);
 	if (!state->world.points)
 	{
-		state->world.points = calloc(cols_n, sizeof(t_point));
+		state->world.points = ft_calloc(cols_n, sizeof(t_point));
 		if (!state->world.points)
 		{
 			close(fd);

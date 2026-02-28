@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 20:50:20 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:51:29 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdlib.h>
 
 #include "math_utils.h"
-#include "types.h"
 #include "utils.h"
 #include "camera_utils.h"
 

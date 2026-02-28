@@ -6,12 +6,11 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 18:38:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 20:39:37 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:51:10 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdbool.h>
 
 #include "camera_utils.h"
 #include "input.h"

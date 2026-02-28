@@ -6,14 +6,13 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 20:23:46 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:55:17 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-# include <bits/types/struct_timeval.h>
 # include <stdbool.h>
 # include <sys/time.h>
 

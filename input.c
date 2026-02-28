@@ -6,12 +6,11 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:25:42 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/27 20:27:21 by asadik           ###   ########.fr       */
+/*   Updated: 2026/02/28 17:51:55 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdbool.h>
 
 #include "types.h"
 
