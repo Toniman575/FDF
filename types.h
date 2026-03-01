@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 17:28:03 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 17:45:40 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,21 @@ typedef struct s_quaternion
 	double	z;
 }				t_quaternion;
 
+typedef struct s_zoom
+{
+	double	current;
+	double	speed;
+	double	min;
+	double	max;
+}				t_zoom;
+
 typedef struct s_camera
 {
 	t_world_coord	pos;
 	t_quaternion	rotation;
-	double			zoom;
-	double			speed;
+	t_zoom			zoom;
+	double			pan_speed;
+	double			rot_speed;
 }				t_camera;
 
 typedef struct s_cursor

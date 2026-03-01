@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:58:00 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:27:18 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ void	init_camera(t_state *state)
 	state->camera.rotation.x = -0.279848;
 	state->camera.rotation.y = 0.115917;
 	state->camera.rotation.z = -0.364705;
-	state->camera.speed = 100.0;
-	state->camera.zoom = 1.0;
+	state->camera.pan_speed = 250.;
+	state->camera.rot_speed = 2.;
+	state->camera.zoom.speed = 1.1;
+	state->camera.zoom.max = 140.;
+	state->camera.zoom.min = 0.01;
+	state->camera.zoom.current = 1.;
 }
 
 t_state	init_state(void)
@@ -61,8 +65,8 @@ t_state	init_state(void)
 	state.world.points = NULL;
 	state.world.points_n = 0;
 	init_camera(&state);
-	state.window_size.x = 500;
-	state.window_size.y = 500;
+	state.window_size.x = 1080;
+	state.window_size.y = 840;
 	state.timestamp.tv_sec = 0;
 	state.timestamp.tv_usec = 0;
 	init_key_states(&state);
@@ -74,10 +78,12 @@ void	setup(t_state *state, const char *file_path)
 	state->mlx.mlx_ptr = mlx_init();
 	if (!state->mlx.mlx_ptr)
 		handle_exit(state);
-	state->mlx.win_ptr = mlx_new_window(state->mlx.mlx_ptr, 500, 500, "FDF");
+	state->mlx.win_ptr = mlx_new_window(state->mlx.mlx_ptr,
+			state->window_size.x, state->window_size.y, "FDF");
 	if (!state->mlx.win_ptr)
 		handle_exit(state);
-	state->mlx.image.img = mlx_new_image(state->mlx.mlx_ptr, 500, 500);
+	state->mlx.image.img = mlx_new_image(state->mlx.mlx_ptr,
+			state->window_size.x, state->window_size.y);
 	if (!state->mlx.image.img)
 		handle_exit(state);
 	state->mlx.image.addr = mlx_get_data_addr(state->mlx.image.img,

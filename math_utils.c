@@ -6,11 +6,12 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:29:07 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 17:53:06 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "types.h"
+#include "utils.h"
 
 #include <math.h>
 
@@ -31,11 +32,7 @@ int	abs(int a)
 
 t_screen_coord	round_point(double x, double y)
 {
-	t_screen_coord	point;
-
-	point.x = round(x);
-	point.y = round(y);
-	return (point);
+	return (new_screen_coord(round(x), round(y)));
 }
 
 t_world_coord	rotate_vector(t_world_coord v, t_quaternion q)
@@ -70,5 +67,6 @@ t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera)
 	inv_rot.y = -inv_rot.y;
 	inv_rot.z = -inv_rot.z;
 	rot = rotate_vector(rel, inv_rot);
-	return (round_point(rot.x * camera->zoom, rot.y * camera->zoom));
+	return (round_point(rot.x * camera->zoom.current, rot.y
+			* camera->zoom.current));
 }

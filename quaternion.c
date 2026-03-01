@@ -6,13 +6,12 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 19:51:26 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:58:00 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:14:52 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "math_utils.h"
 #include "types.h"
-#include "utils.h"
 
 #include <math.h>
 
@@ -53,20 +52,4 @@ t_quaternion	quaternion_from_axis_angle(t_world_coord axis, double angle)
 	q.y = axis.y * s;
 	q.z = axis.z * s;
 	return (q);
-}
-
-void	apply_pivot_correction(t_state *state, t_quaternion old_rot)
-{
-	t_world_coord	screen_center_v;
-	t_world_coord	offset1;
-	t_world_coord	offset2;
-
-	screen_center_v = new_world_coord((state->window_size.x / 2.0)
-			/ state->camera.zoom, (state->window_size.y / 2.0)
-			/ state->camera.zoom, 0);
-	offset1 = rotate_vector(screen_center_v, old_rot);
-	offset2 = rotate_vector(screen_center_v, state->camera.rotation);
-	state->camera.pos = new_world_coord(state->camera.pos.x + offset1.x
-			- offset2.x, state->camera.pos.y + offset1.y - offset2.y,
-			state->camera.pos.z + offset1.z - offset2.z);
 }

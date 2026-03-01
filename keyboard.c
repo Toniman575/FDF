@@ -6,12 +6,13 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:25:42 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 17:28:56 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:15:50 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 
+#include "camera_utils.h"
 #include "types.h"
 
 t_key	get_key_index(int keycode)
@@ -38,6 +39,16 @@ int	key_down(int keycode, t_state *state)
 {
 	int	index;
 
+	if (keycode == 0x0063)
+	{
+		center_camera(state);
+		return (1);
+	}
+	else if (keycode == 0x0072)
+	{
+		reset_camera(state);
+		return (1);
+	}
 	index = get_key_index(keycode);
 	if (index == -2)
 		return (0);
