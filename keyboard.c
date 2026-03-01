@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:25:42 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:28:43 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 17:28:56 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 t_key	get_key_index(int keycode)
 {
-	if (keycode == 0xff51)
-		return (ARROW_LEFT);
-	else if (keycode == 0xff52)
-		return (ARROW_UP);
-	else if (keycode == 0xff53)
-		return (ARROW_RIGHT);
-	else if (keycode == 0xff54)
-		return (ARROW_DOWN);
+	if (keycode == 0x0061)
+		return (KEY_A);
+	else if (keycode == 0x0077)
+		return (KEY_W);
+	else if (keycode == 0x0064)
+		return (KEY_D);
+	else if (keycode == 0x0073)
+		return (KEY_S);
 	else if (keycode == 0x0071)
 		return (KEY_Q);
 	else if (keycode == 0x0065)

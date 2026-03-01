@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:01:53 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 17:28:03 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 typedef enum e_key
 {
-	ARROW_LEFT,
-	ARROW_UP,
-	ARROW_RIGHT,
-	ARROW_DOWN,
+	KEY_A,
+	KEY_W,
+	KEY_D,
+	KEY_S,
 	KEY_Q,
 	KEY_E,
 	COUNT
