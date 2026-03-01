@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 18:27:18 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:32:41 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,11 @@ void	init_key_states(t_state *state)
 void	init_camera(t_state *state)
 {
 	state->camera.pos = new_world_coord(0., 0., 0.);
-	state->camera.rotation.w = 0.880476;
-	state->camera.rotation.x = -0.279848;
-	state->camera.rotation.y = 0.115917;
-	state->camera.rotation.z = -0.364705;
 	state->camera.pan_speed = 250.;
 	state->camera.rot_speed = 2.;
 	state->camera.zoom.speed = 1.1;
 	state->camera.zoom.max = 140.;
 	state->camera.zoom.min = 0.01;
-	state->camera.zoom.current = 1.;
 }
 
 t_state	init_state(void)
@@ -66,7 +61,7 @@ t_state	init_state(void)
 	state.world.points_n = 0;
 	init_camera(&state);
 	state.window_size.x = 1080;
-	state.window_size.y = 840;
+	state.window_size.y = 800;
 	state.timestamp.tv_sec = 0;
 	state.timestamp.tv_usec = 0;
 	init_key_states(&state);

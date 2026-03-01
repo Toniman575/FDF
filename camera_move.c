@@ -6,10 +6,11 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 17:56:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 18:26:27 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:48:47 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "camera_utils.h"
 #include "math_utils.h"
 #include "types.h"
 #include "utils.h"
@@ -48,9 +49,6 @@ void	pan_camera(t_state *state, double delta)
 void	zoom_camera(t_camera *camera, int button, int x, int y)
 {
 	double			old_zoom;
-	double			factor;
-	t_world_coord	mouse_vector;
-	t_world_coord	offset;
 
 	old_zoom = camera->zoom.current;
 	if (button == 5)
@@ -61,11 +59,7 @@ void	zoom_camera(t_camera *camera, int button, int x, int y)
 		camera->zoom.current = camera->zoom.min;
 	if (camera->zoom.current > camera->zoom.max)
 		camera->zoom.current = camera->zoom.max;
-	factor = (1.0 / old_zoom) - (1.0 / camera->zoom.current);
-	mouse_vector = new_world_coord((double)x * factor, (double)y * factor, 0);
-	offset = rotate_vector(mouse_vector, camera->rotation);
-	camera->pos = new_world_coord(camera->pos.x + offset.x,
-			camera->pos.y + offset.y, camera->pos.z + offset.z);
+	zoom_position_correction(camera, old_zoom, x, y);
 }
 
 void	rotate_camera(t_state *state, double delta)
@@ -86,7 +80,7 @@ void	rotate_camera(t_state *state, double delta)
 		state->camera.rotation = quaternion_multiply(rot,
 				state->camera.rotation);
 		normalize_quaternion(&state->camera.rotation);
-		apply_pivot_correction(state, old_rot);
+		pivot_correction(state, old_rot);
 	}
 }
 
@@ -104,5 +98,5 @@ void	drag_camera(t_screen_coord	delta, t_state *state)
 	rot = quaternion_multiply(rot, temp);
 	state->camera.rotation = quaternion_multiply(state->camera.rotation, rot);
 	normalize_quaternion(&state->camera.rotation);
-	apply_pivot_correction(state, old_rot);
+	pivot_correction(state, old_rot);
 }

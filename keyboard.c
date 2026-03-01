@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:25:42 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 18:15:50 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:52:04 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ int	key_down(int keycode, t_state *state)
 	int	index;
 
 	if (keycode == 0x0063)
-	{
-		center_camera(state);
-		return (1);
-	}
+		return (center_camera(state), 1);
 	else if (keycode == 0x0072)
-	{
-		reset_camera(state);
-		return (1);
-	}
+		return (reset_camera(state), 1);
+	else if (keycode == 0x0079 || keycode == 0x007a)
+		return (reset_rot(state), 1);
+	else if (keycode == 0x0078)
+		return (reset_zoom(state), 1);
 	index = get_key_index(keycode);
 	if (index == -2)
 		return (0);

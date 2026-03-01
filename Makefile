@@ -6,7 +6,7 @@ CC =		cc
 CFLAGS =	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)
 MLXFLAGS =	-lmlx -lXext -lX11
 LDFLAGS =	-L$(LIBFT_DIR) -lft
-SRCS =		camera_utils.c drawing.c fdf.c keyboard.c line_drawing_utils.c \
+SRCS =		camera_utils.c camera_math.c drawing.c fdf.c keyboard.c line_drawing_utils.c \
 			math_utils.c mouse.c quaternion.c read_parse.c read_parse_utils.c \
 			setup.c utils.c camera_move.c
 OBJS =		$(SRCS:.c=.o)

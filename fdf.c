@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 18:38:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:28:47 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:28:30 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int argc, char **argv)
 		return (0);
 	state = init_state();
 	setup(&state, argv[1]);
-	center_camera(&state);
+	reset_camera(&state);
 	register_hooks(&state);
 	mlx_loop(state.mlx.mlx_ptr);
 	handle_exit(&state);
