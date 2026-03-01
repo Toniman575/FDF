@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 19:48:17 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 20:45:14 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 	{
 		hac = ft_split(col, ',');
 		if (!hac)
-		{
-			free_split(hac);
-			return (0);
-		}
+			return (free_split(hac), 0);
 		state->world.points[index].coord = init_world_coord(col_i, row_i,
 				hac[0], state);
-		state->world.points[index].color = ft_atoi_hex();
+		state->world.points[index].color = ft_atoi_hex(hac[1]);
 		free_split(hac);
 	}
 	else
@@ -49,26 +46,26 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 
 static void	realloc_points(t_state *state, int cols_n, int fd)
 {
-	t_point	*temp_points;
+	t_world_point	*temp_points;
 
-	temp_points = ft_calloc(state->world.points_n, sizeof(t_point));
+	temp_points = ft_calloc(state->world.points_n, sizeof(t_world_point));
 	if (!temp_points)
 	{
 		close(fd);
 		handle_exit(state);
 	}
-	ft_memcpy(temp_points, state->world.points, sizeof(t_point)
+	ft_memcpy(temp_points, state->world.points, sizeof(t_world_point)
 		* (state->world.points_n));
 	free(state->world.points);
 	state->world.points = ft_calloc(state->world.points_n + cols_n,
-			sizeof(t_point));
+			sizeof(t_world_point));
 	if (!state->world.points)
 	{
 		close(fd);
 		free(temp_points);
 		handle_exit(state);
 	}
-	ft_memcpy(state->world.points, temp_points, sizeof(t_point)
+	ft_memcpy(state->world.points, temp_points, sizeof(t_world_point)
 		* (state->world.points_n));
 	free(temp_points);
 }
@@ -80,7 +77,7 @@ static void	prepare_points(t_state *state, char **cols, int fd)
 	cols_n = split_n(cols);
 	if (!state->world.points)
 	{
-		state->world.points = ft_calloc(cols_n, sizeof(t_point));
+		state->world.points = ft_calloc(cols_n, sizeof(t_world_point));
 		if (!state->world.points)
 		{
 			close(fd);

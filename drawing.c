@@ -6,14 +6,14 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 20:03:16 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 21:09:00 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdlib.h>
 
-#include "math_utils.h"
+#include "types.h"
 #include "utils.h"
 #include "camera_utils.h"
 
@@ -28,19 +28,27 @@ static void	my_mlx_pixel_put(t_image *image, t_screen_coord coord, int color)
 	*(unsigned int *)dst = color;
 }
 
-static void	draw_line(t_state *state, t_screen_coord start, t_screen_coord end)
+static void	draw_line(t_state *state, t_screen_point start, t_screen_point end)
 {
 	t_line	line;
 	int		i;
+	double	t;
+	int		color;
 
 	i = 0;
-	line = get_line(state, start, end);
+	line = get_line(state, start.coord, end.coord);
 	while (i <= line.length)
 	{
 		if (line.points[i].x < state->window_size.x && line.points[i].y
 			< state->window_size.y && line.points[i].x >= 0
 			&& line.points[i].y >= 0)
-			my_mlx_pixel_put(&state->mlx.image, line.points[i], 0xFFFFFF);
+		{
+			t = 0.0;
+			if (line.length > 0)
+				t = (double)i / line.length;
+			color = lerp_color(start.color, end.color, t);
+			my_mlx_pixel_put(&state->mlx.image, line.points[i], color);
+		}
 		i++;
 	}
 	free(line.points);
@@ -49,23 +57,22 @@ static void	draw_line(t_state *state, t_screen_coord start, t_screen_coord end)
 static void	draw_lines(t_state *state)
 {
 	int				i;
-	t_screen_coord	start;
-	t_screen_coord	end;
+	t_screen_point	start;
+	t_screen_point	end;
 
 	i = 0;
 	while (i < state->world.points_n)
 	{
-		start = world_to_screen(state->world.points[i].coord, state);
+		start = worldp_to_screenp(state->world.points[i], state);
 		if ((i + 1) % state->world.size.point_w != 0)
 		{
-			end = world_to_screen(state->world.points[i
-					+ 1].coord, state);
+			end = worldp_to_screenp(state->world.points[i + 1], state);
 			draw_line(state, start, end);
 		}
 		if (i + state->world.size.point_w < state->world.points_n)
 		{
-			end = world_to_screen(state->world.points[i
-					+ state->world.size.point_w].coord, state);
+			end = worldp_to_screenp(state->world.points[i
+					+ state->world.size.point_w], state);
 			draw_line(state, start, end);
 		}
 		i++;

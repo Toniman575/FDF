@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 17:13:55 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 19:03:42 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 20:53:03 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ static t_screen_coord	lerp_point(t_screen_coord start, t_screen_coord end,
 	x = lerp((double)start.x, (double)end.x, t);
 	y = lerp((double)start.y, (double)end.y, t);
 	return (round_point(x, y));
+}
+
+int	lerp_color(int start, int end, double t)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = lerp((start >> 16) & 0xFF, (end >> 16) & 0xFF, t);
+	g = lerp((start >> 8) & 0xFF, (end >> 8) & 0xFF, t);
+	b = lerp(start & 0xFF, end & 0xFF, t);
+	return ((r << 16) | (g << 8) | b);
 }
 
 t_line	get_line(t_state *state, t_screen_coord start, t_screen_coord end)

@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:52 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 19:57:06 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 20:23:38 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	free_split(char **str)
 {
 	int	i;
 
+	if (!str)
+		return ;
 	i = 0;
 	while (str[i])
 	{
@@ -47,7 +49,30 @@ void	handle_exit(t_state *state)
 	exit(EXIT_SUCCESS);
 }
 
-int	ft_atoi_hex(void)
+int	ft_atoi_hex(const char *str)
 {
-	return (0);
+	int	result;
+	int	i;
+	int	val;
+
+	if (!str)
+		return (0);
+	result = 0;
+	i = 0;
+	if (str[i] == '0' && (str[i + 1] == 'x' || str[i + 1] == 'X'))
+		i += 2;
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			val = str[i] - '0';
+		else if (str[i] >= 'a' && str[i] <= 'f')
+			val = str[i] - 'a' + 10;
+		else if (str[i] >= 'A' && str[i] <= 'F')
+			val = str[i] - 'A' + 10;
+		else
+			break ;
+		result = (result * 16) + val;
+		i++;
+	}
+	return (result);
 }
