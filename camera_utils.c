@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:45:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 17:36:01 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 17:38:20 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ void	rotate_camera(t_state *state, double delta)
 	{
 		old_rot = state->camera.rotation;
 		rot = quaternion_from_axis_angle(new_world_coord(0, 0, 1), angle);
-		state->camera.rotation = quaternion_multiply(rot, state->camera.rotation);
+		state->camera.rotation = quaternion_multiply(rot,
+				state->camera.rotation);
 		normalize_quaternion(&state->camera.rotation);
 		apply_pivot_correction(state, old_rot);
 	}
