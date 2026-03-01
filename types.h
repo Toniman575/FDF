@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 19:02:19 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:39:58 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,21 @@ typedef struct s_point
 	int				color;
 }				t_point;
 
+typedef struct s_world_size
+{
+	int	point_w;
+	int	point_h;
+	int	pixel_w;
+	int	pixel_h;
+}				t_world_size;
+
 typedef struct s_world
 {
-	int		width;
-	int		height;
-	int		spacing;
-	int		height_scale;
-	t_point	*points;
-	int		points_n;
+	t_world_size	size;
+	int				spacing;
+	int				height_scale;
+	t_point			*points;
+	int				points_n;
 }				t_world;
 
 typedef struct s_quaternion

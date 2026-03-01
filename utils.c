@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:52 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:58:00 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:57:06 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,6 @@
 #include <stdlib.h>
 
 #include "types.h"
-
-t_world_coord	new_world_coord(double x, double y, double z)
-{
-	t_world_coord	new;
-
-	new.x = x;
-	new.y = y;
-	new.z = z;
-	return (new);
-}
-
-t_screen_coord	new_screen_coord(int x, int y)
-{
-	t_screen_coord	new;
-
-	new.x = x;
-	new.y = y;
-	return (new);
-}
 
 void	free_split(char **str)
 {

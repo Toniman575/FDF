@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:22:24 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 17:52:37 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:59:23 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int				handle_exit(t_state *state);
 void			read_file(t_state *state, const char *file_path);
 t_world_coord	new_world_coord(double x, double y, double z);
 t_screen_coord	new_screen_coord(int x, int y);
+t_quaternion	new_quaternion(double w, double x, double y, double z);
 int				ft_atoi_hex(void);
 t_line			get_line(t_state *state, t_screen_coord start,
 					t_screen_coord end);

@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 18:56:37 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:48:17 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 #include "read_parse_utils.h"
 #include "libft/libft.h"
+#include "types.h"
 #include "utils.h"
 
 static int	parse_col(char *col, int row_i, int col_i, t_state *state)
@@ -115,7 +116,7 @@ void	parse_row(char *row, int row_i, t_state *state, int fd)
 		col_i++;
 	}
 	state->world.points_n += col_i;
-	state->world.width = col_i;
+	state->world.size.point_w = col_i;
 	free_split(cols);
 }
 
@@ -142,7 +143,8 @@ void	read_file(t_state *state, const char *file_path)
 		free(new_line);
 		new_line = get_next_line_single(fd);
 	}
-	state->world.height = row_i;
+	state->world.size.point_h = row_i;
+	world_pixel_size(&state->world);
 	free(new_line);
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 19:02:47 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:42:41 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "types.h"
 #include "utils.h"
 
-void	init_key_states(t_state *state)
+static void	init_key_states(t_state *state)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ void	init_key_states(t_state *state)
 	state->cursor_state.pos.y = 0;
 }
 
-void	init_camera(t_state *state)
+static void	init_camera(t_state *state)
 {
 	state->camera.pos = new_world_coord(0., 0., 0.);
 	state->camera.pan_speed = 250.;
@@ -41,6 +41,18 @@ void	init_camera(t_state *state)
 	state->camera.zoom.max = 140.;
 	state->camera.zoom.min = 0.01;
 	state->camera.projection = PARALLEL;
+}
+
+static void	init_world(t_state *state)
+{
+	state->world.size.pixel_h = 0;
+	state->world.size.pixel_w = 0;
+	state->world.size.point_h = 0;
+	state->world.size.point_w = 0;
+	state->world.spacing = 20;
+	state->world.height_scale = 5;
+	state->world.points = NULL;
+	state->world.points_n = 0;
 }
 
 t_state	init_state(void)
@@ -54,12 +66,7 @@ t_state	init_state(void)
 	state.mlx.image.line_length = 0;
 	state.mlx.mlx_ptr = NULL;
 	state.mlx.win_ptr = NULL;
-	state.world.height = 0;
-	state.world.width = 0;
-	state.world.spacing = 20;
-	state.world.height_scale = 5;
-	state.world.points = NULL;
-	state.world.points_n = 0;
+	init_world(&state);
 	init_camera(&state);
 	state.window_size.x = 1080;
 	state.window_size.y = 800;

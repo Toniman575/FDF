@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 19:11:34 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 20:08:10 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_screen_coord	round_point(double x, double y)
 
 t_world_coord	rotate_vector(t_world_coord v, t_quaternion q)
 {
-	t_world_coord	res;
 	double			t[3];
 	double			w_t[3];
 
@@ -47,13 +46,12 @@ t_world_coord	rotate_vector(t_world_coord v, t_quaternion q)
 	w_t[0] = q.w * t[0];
 	w_t[1] = q.w * t[1];
 	w_t[2] = q.w * t[2];
-	res.x = v.x + w_t[0] + (q.y * t[2] - q.z * t[1]);
-	res.y = v.y + w_t[1] + (q.z * t[0] - q.x * t[2]);
-	res.z = v.z + w_t[2] + (q.x * t[1] - q.y * t[0]);
-	return (res);
+	return (new_world_coord(v.x + w_t[0] + (q.y * t[2] - q.z * t[1]), v.y
+			+ w_t[1] + (q.z * t[0] - q.x * t[2]), v.z + w_t[2] + (q.x * t[1]
+				- q.y * t[0])));
 }
 
-t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera)
+t_screen_coord	world_to_screen(t_world_coord coord, const t_state *state)
 {
 	t_world_coord	rel;
 	t_world_coord	rot;
@@ -61,18 +59,18 @@ t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera)
 	double			scale;
 	double			dist;
 
-	rel.x = coord.x - camera->pos.x;
-	rel.y = coord.y - camera->pos.y;
-	rel.z = coord.z - camera->pos.z;
-	inv_rot = camera->rotation;
-	inv_rot.x = -inv_rot.x;
-	inv_rot.y = -inv_rot.y;
-	inv_rot.z = -inv_rot.z;
+	rel = new_world_coord(coord.x - state->camera.pos.x, coord.y
+			- state->camera.pos.y, coord.z - state->camera.pos.z);
+	inv_rot = new_quaternion(state->camera.rotation.w,
+			-state->camera.rotation.x, -state->camera.rotation.y,
+			-state->camera.rotation.z);
 	rot = rotate_vector(rel, inv_rot);
-	scale = camera->zoom.current;
-	if (camera->projection == PERSPECTIVE)
+	scale = state->camera.zoom.current;
+	if (state->camera.projection == PERSPECTIVE)
 	{
-		dist = 1000.0;
+		dist = max(state->world.size.pixel_w, state->world.size.pixel_h);
+		if (dist < 1.0)
+			dist = 1000.0;
 		if (dist - rot.z < 1.0)
 			scale *= dist;
 		else

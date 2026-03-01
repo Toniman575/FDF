@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 15:45:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 18:53:37 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 20:02:55 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,17 @@
 
 void	reset_zoom(t_state *state)
 {
-	double	world_w;
-	double	world_h;
 	double	old_zoom;
 
 	old_zoom = state->camera.zoom.current;
-	world_w = (state->world.width - 1) * state->world.spacing;
-	world_h = (state->world.height - 1) * state->world.spacing;
-	if (state->world.width > 1 && state->world.height > 1)
+	if (state->world.size.pixel_w > 1 && state->world.size.pixel_h > 1)
 	{
-		if (world_w > world_h)
-			state->camera.zoom.current = (state->window_size.x * 0.8) / world_w;
+		if (state->world.size.pixel_w > state->world.size.pixel_h)
+			state->camera.zoom.current = (state->window_size.x * 0.8)
+				/ state->world.size.pixel_w;
 		else
-			state->camera.zoom.current = (state->window_size.y * 0.8) / world_h;
+			state->camera.zoom.current = (state->window_size.y * 0.8)
+				/ state->world.size.pixel_h;
 	}
 	if (state->camera.zoom.current <= 0)
 		state->camera.zoom.current = 1.0;
@@ -42,10 +40,8 @@ void	reset_rot(t_state *state)
 	t_quaternion	old_rot;
 
 	old_rot = state->camera.rotation;
-	state->camera.rotation.w = 0.880476;
-	state->camera.rotation.x = -0.279848;
-	state->camera.rotation.y = 0.115917;
-	state->camera.rotation.z = -0.364705;
+	state->camera.rotation = new_quaternion(0.880476, -0.279848, 0.115917,
+			-0.364705);
 	pivot_correction(state, old_rot);
 }
 
@@ -55,8 +51,8 @@ void	center_camera(t_state *state)
 	t_world_coord	screen_center;
 	t_world_coord	offset;
 
-	center = new_world_coord((state->world.width - 1) * state->world.spacing
-			/ 2., (state->world.height - 1) * state->world.spacing / 2., 0);
+	center = new_world_coord(state->world.size.pixel_w / 2.,
+			state->world.size.pixel_h / 2., 0);
 	screen_center = new_world_coord((state->window_size.x / 2.)
 			/ state->camera.zoom.current, (state->window_size.y / 2.)
 			/ state->camera.zoom.current, 0.);

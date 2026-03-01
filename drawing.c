@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:58:32 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 20:03:16 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ static void	draw_lines(t_state *state)
 	i = 0;
 	while (i < state->world.points_n)
 	{
-		start = world_to_screen(state->world.points[i].coord, &state->camera);
-		if ((i + 1) % state->world.width != 0)
+		start = world_to_screen(state->world.points[i].coord, state);
+		if ((i + 1) % state->world.size.point_w != 0)
 		{
 			end = world_to_screen(state->world.points[i
-					+ 1].coord, &state->camera);
+					+ 1].coord, state);
 			draw_line(state, start, end);
 		}
-		if (i + state->world.width < state->world.points_n)
+		if (i + state->world.size.point_w < state->world.points_n)
 		{
 			end = world_to_screen(state->world.points[i
-					+ state->world.width].coord, &state->camera);
+					+ state->world.size.point_w].coord, state);
 			draw_line(state, start, end);
 		}
 		i++;
@@ -76,8 +76,7 @@ static void	clear_image(t_state *state)
 {
 	t_screen_coord	current;
 
-	current.x = 0;
-	current.y = 0;
+	current = new_screen_coord(0, 0);
 	while (current.y < state->window_size.y)
 	{
 		while (current.x < state->window_size.x)
