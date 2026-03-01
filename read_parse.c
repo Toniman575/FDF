@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/02/28 22:58:00 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 18:56:37 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 	{
 		state->world.points[index].coord = init_world_coord(col_i, row_i,
 				col, state);
-		state->world.points[index].color = 0;
+		state->world.points[index].color = 0xFFFFFF;
 	}
 	return (1);
 }

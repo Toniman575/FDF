@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 17:53:06 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:11:34 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera)
 	t_world_coord	rel;
 	t_world_coord	rot;
 	t_quaternion	inv_rot;
+	double			scale;
+	double			dist;
 
 	rel.x = coord.x - camera->pos.x;
 	rel.y = coord.y - camera->pos.y;
@@ -67,6 +69,14 @@ t_screen_coord	world_to_screen(t_world_coord coord, const t_camera *camera)
 	inv_rot.y = -inv_rot.y;
 	inv_rot.z = -inv_rot.z;
 	rot = rotate_vector(rel, inv_rot);
-	return (round_point(rot.x * camera->zoom.current, rot.y
-			* camera->zoom.current));
+	scale = camera->zoom.current;
+	if (camera->projection == PERSPECTIVE)
+	{
+		dist = 1000.0;
+		if (dist - rot.z < 1.0)
+			scale *= dist;
+		else
+			scale *= dist / (dist - rot.z);
+	}
+	return (round_point(rot.x * scale, rot.y * scale));
 }

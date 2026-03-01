@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 17:45:40 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:02:19 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ typedef enum e_key
 	KEY_E,
 	COUNT
 }				t_key;
+
+typedef enum e_projection
+{
+	PARALLEL,
+	PERSPECTIVE
+}				t_projection;
 
 typedef struct s_image
 {
@@ -101,6 +107,7 @@ typedef struct s_camera
 	t_zoom			zoom;
 	double			pan_speed;
 	double			rot_speed;
+	t_projection	projection;
 }				t_camera;
 
 typedef struct s_cursor

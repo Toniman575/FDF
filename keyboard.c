@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:25:42 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 18:52:04 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:10:12 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@ int	key_down(int keycode, t_state *state)
 		return (reset_rot(state), 1);
 	else if (keycode == 0x0078)
 		return (reset_zoom(state), 1);
+	else if (keycode == 0x0070)
+	{
+		if (state->camera.projection == PERSPECTIVE)
+			state->camera.projection = PARALLEL;
+		else
+			state->camera.projection = PERSPECTIVE;
+		return (1);
+	}
 	index = get_key_index(keycode);
 	if (index == -2)
 		return (0);

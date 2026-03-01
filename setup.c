@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 18:32:41 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/01 19:02:47 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init_camera(t_state *state)
 	state->camera.zoom.speed = 1.1;
 	state->camera.zoom.max = 140.;
 	state->camera.zoom.min = 0.01;
+	state->camera.projection = PARALLEL;
 }
 
 t_state	init_state(void)
