@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 20:08:10 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/02 21:12:33 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ t_screen_coord	world_to_screen(t_world_coord coord, const t_state *state)
 		else
 			scale *= dist / (dist - rot.z);
 	}
-	return (round_point(rot.x * scale, rot.y * scale));
+	return (round_point(rot.x * scale + (double)state->window_size.x / 2.,
+			rot.y * scale + (double)state->window_size.y / 2.));
 }

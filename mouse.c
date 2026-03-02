@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 21:24:35 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 17:46:16 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/02 21:27:41 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera_utils.h"
 #include "types.h"
+#include "utils.h"
 
 int	button_down(int button, int x, int y, t_state *state)
 {
 	if (button == 5 || button == 4)
-		zoom_camera(&state->camera, button, x, y);
+		zoom_camera(state, button, new_screen_coord(x, y));
 	else if (button == 1)
 	{
 		state->cursor_state.pressed = true;
