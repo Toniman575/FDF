@@ -17,8 +17,10 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) -lm $(LDFLAGS) -o $(NAME)
 
-$(LIBFT):
+$(LIBFT): FORCE
 	$(MAKE) -C $(LIBFT_DIR)
+
+FORCE:
 
 clean:
 	rm -f $(OBJS) $(DEPS)
@@ -33,6 +35,7 @@ re: fclean all
 debug: fclean
 	$(MAKE) -C $(LIBFT_DIR) debug
 	$(MAKE) all CFLAGS="$(CFLAGS) -g"
-.PHONY: all clean fclean re debug
+
+.PHONY: all clean fclean re debug FORCE
 
 -include $(DEPS)
