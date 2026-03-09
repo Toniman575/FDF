@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:52 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 20:23:38 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 12:38:24 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	handle_exit(t_state *state)
 		mlx_destroy_window(state->mlx.mlx_ptr, state->mlx.win_ptr);
 		state->mlx.win_ptr = NULL;
 	}
+	if (state->mlx.mlx_ptr)
+		mlx_destroy_display(state->mlx.mlx_ptr);
 	free(state->world.points);
 	state->world.points = NULL;
 	free(state->mlx.mlx_ptr);
