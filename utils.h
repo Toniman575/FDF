@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:22:24 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/05 13:21:31 by anton            ###   ########.fr       */
+/*   Updated: 2026/03/09 12:18:44 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,12 @@ int				render(t_state *data);
 int				lerp_color(int start, int end, double t);
 t_quaternion	track_ball(t_screen_coord delta, t_state *state);
 t_screen_point	worldp_to_screenp(t_world_point point, t_state *state);
+int				get_color(double f, int i, int start_color, int end_color);
+void			my_mlx_pixel_put(t_image *image, t_screen_coord coord,
+					int color);
+void			draw_line_vertical(t_state *state, t_screen_point start,
+					t_screen_point end);
+void			draw_line_horizontal(t_state *state, t_screen_point start,
+					t_screen_point end);
 
 #endif

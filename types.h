@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/05 13:21:14 by anton            ###   ########.fr       */
+/*   Updated: 2026/03/09 11:54:30 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,13 @@ typedef struct s_cursor
 	t_screen_coord	pos;
 	bool			pressed;
 }				t_cursor;
+
+typedef struct s_bresenham
+{
+	t_screen_coord	step;
+	int				dir;
+	int				p;
+}				t_bresenham;
 
 typedef struct s_state
 {
