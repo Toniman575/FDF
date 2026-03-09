@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/09 15:40:22 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 22:09:01 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef enum e_key
 	KEY_S,
 	KEY_Q,
 	KEY_E,
+	KEY_ADD,
+	KEY_SUB,
 	COUNT
 }				t_key;
 
@@ -66,6 +68,7 @@ typedef struct s_world_point
 {
 	t_world_coord	coord;
 	int				color;
+	double			original_z;
 }				t_world_point;
 
 typedef struct s_screen_point

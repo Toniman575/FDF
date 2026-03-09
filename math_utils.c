@@ -6,7 +6,7 @@
 /*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:08:29 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/02 21:12:33 by anton            ###   ########.fr       */
+/*   Updated: 2026/03/09 21:36:39 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ t_screen_coord	world_to_screen(t_world_coord coord, const t_state *state)
 	if (state->camera.projection == PERSPECTIVE)
 	{
 		dist = max(state->world.size.pixel_w, state->world.size.pixel_h);
-		if (dist < 1.0)
-			dist = 1000.0;
 		if (dist - rot.z < 1.0)
 			scale *= dist;
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/09 12:17:42 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 22:01:09 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	render(t_state *state)
 	state->timestamp = ct;
 	pan_camera(state, delta);
 	rotate_camera(state, delta);
+	height_scale(delta, state);
 	draw_lines(state);
 	mlx_put_image_to_window(state->mlx.mlx_ptr, state->mlx.win_ptr,
 		state->mlx.image.img, 0, 0);

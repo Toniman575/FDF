@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_parse_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:40:09 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/09 15:47:05 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 22:07:52 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	world_heights(t_world *world)
 	}
 }
 
-static void	normalize_heights(t_world *world)
+void	normalize_heights(t_world *world)
 {
 	int		i;
 	double	height_range;
@@ -57,7 +57,7 @@ static void	normalize_heights(t_world *world)
 	{
 		if (height_range != 0)
 		{
-			world->points[i].coord.z = ((world->points[i].coord.z
+			world->points[i].coord.z = ((world->points[i].original_z
 						- world->min_height) / height_range)
 				* world->height_scale;
 		}

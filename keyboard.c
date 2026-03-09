@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 20:25:42 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 19:10:12 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 22:09:53 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ t_key	get_key_index(int keycode)
 		return (KEY_Q);
 	else if (keycode == 0x0065)
 		return (KEY_E);
+	else if (keycode == 0xFFAB)
+		return (KEY_ADD);
+	else if (keycode == 0xFFAD)
+		return (KEY_SUB);
 	else if (keycode == 0xff1b)
 		return (-1);
 	else

@@ -6,12 +6,13 @@
 /*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/01 17:56:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/05 13:21:24 by anton            ###   ########.fr       */
+/*   Updated: 2026/03/09 22:12:24 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera_utils.h"
 #include "math_utils.h"
+#include "read_parse_utils.h"
 #include "types.h"
 #include "utils.h"
 
@@ -97,4 +98,21 @@ void	drag_camera(t_screen_coord	delta, t_state *state)
 	rot = quaternion_multiply(rot, temp);
 	state->camera.rotation = quaternion_multiply(state->camera.rotation, rot);
 	normalize_quaternion(&state->camera.rotation);
+}
+
+void	height_scale(double delta, t_state *state)
+{
+	double	l;
+	double	speed;
+
+	l = 0;
+	speed = 50.0;
+	if (state->key_states[KEY_ADD])
+		l += 1;
+	if (state->key_states[KEY_SUB])
+		l -= 1;
+	if (l == 0)
+		return ;
+	state->world.height_scale += l * speed * delta;
+	normalize_heights(&state->world);
 }

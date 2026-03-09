@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/09 15:36:56 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 22:12:50 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 			return (free_split(hac), 0);
 		state->world.points[index].coord = init_world_coord(col_i, row_i,
 				hac[0], state);
+		state->world.points[index].original_z = state->world.points[index]
+			.coord.z;
 		state->world.points[index].color = ft_atoi_hex(hac[1]);
 		free_split(hac);
 	}
@@ -39,6 +41,8 @@ static int	parse_col(char *col, int row_i, int col_i, t_state *state)
 	{
 		state->world.points[index].coord = init_world_coord(col_i, row_i,
 				col, state);
+		state->world.points[index].original_z = state->world.points[index]
+			.coord.z;
 		state->world.points[index].color = 0xFFFFFF;
 	}
 	return (1);

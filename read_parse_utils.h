@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_parse_utils.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:41:08 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 19:48:26 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 22:03:09 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int				split_n(char **cols);
 t_world_coord	init_world_coord(int col_i, int row_i, char *height,
 					t_state *state);
 t_world_size	world_pixel_size(t_world *world);
+void			normalize_heights(t_world *world);
 
 #endif
