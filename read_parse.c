@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 20:45:14 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 15:36:56 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	read_file(t_state *state, const char *file_path)
 		new_line = get_next_line_single(fd);
 	}
 	state->world.size.point_h = row_i;
-	world_pixel_size(&state->world);
 	free(new_line);
+	world_pixel_size(&state->world);
 	close(fd);
 }

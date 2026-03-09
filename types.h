@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/09 11:54:30 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 15:40:22 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,11 @@ typedef struct s_world
 {
 	t_world_size	size;
 	int				spacing;
-	int				height_scale;
+	double			height_scale;
 	t_world_point	*points;
 	int				points_n;
+	int				max_height;
+	int				min_height;
 }				t_world;
 
 typedef struct s_quaternion

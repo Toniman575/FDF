@@ -6,13 +6,14 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/09 12:34:19 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/09 16:29:26 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <stdio.h>
 #include <sys/time.h>
+#include <limits.h>
 
 #include "types.h"
 #include "utils.h"
@@ -51,9 +52,11 @@ static void	init_world(t_state *state)
 	state->world.size.point_h = 0;
 	state->world.size.point_w = 0;
 	state->world.spacing = 20;
-	state->world.height_scale = 5;
+	state->world.height_scale = 100;
 	state->world.points = NULL;
 	state->world.points_n = 0;
+	state->world.min_height = INT_MAX;
+	state->world.max_height = INT_MIN;
 }
 
 t_state	init_state(void)
