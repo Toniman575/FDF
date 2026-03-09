@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 15:13:20 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/01 20:55:24 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/05 13:21:14 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,6 @@ typedef struct s_screen_coord
 	int	x;
 	int	y;
 }				t_screen_coord;
-
-typedef struct s_line
-{
-	t_screen_coord	*points;
-	int				length;
-}				t_line;
 
 typedef struct s_world_point
 {
