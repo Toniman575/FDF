@@ -13,7 +13,7 @@ Run the program with `./fdf 'path/to/mapfile'`. The program will close gracefull
 ## Maps
 A valid map file must comply with the following rules:
 1.  **Grid Structure**: Each row must have the same number of points. Rows are separated by newline characters.
-2.  **Point Separation**: Points on the same row must be separated by a space.
+2.  **Point Separation**: Points on the same row must be separated by spaces.
 3.  **Point Format**: Each point consists of a numeric height value. Optionally, a color can be specified after the height, separated by a comma (e.g., `10,0xFF0000`).
 4.  **Color Format**: Colors must be hexadecimal numbers prefixed with `0x` in ARGB (Alpha, Red, Green, Blue) format. Shorter values are padded with leading zeros; for example, `0xFF` is treated as `0x000000FF` (opaque blue).
 5.  **Value Limits**: The program does not protect against integer overflow. Map dimensions and height values should stay within the `INT_MIN` and `INT_MAX` range.
