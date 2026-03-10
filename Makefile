@@ -2,7 +2,7 @@ NAME =		fdf
 LIBFT_DIR =	./libft
 LIBFT =		$(LIBFT_DIR)/libft.a
 
-CC =		clang
+CC =		cc
 CFLAGS =	-Wall -Wextra -Werror -MMD -MP -I$(LIBFT_DIR)
 MLXFLAGS =	-lmlx -lXext -lX11
 LDFLAGS =	-L$(LIBFT_DIR) -lft
@@ -15,7 +15,7 @@ DEPS =		$(OBJS:.o=.d)
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLXFLAGS) -lm $(LDFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXFLAGS) $(OBJS) -lm $(LDFLAGS) -o $(NAME)
 
 $(LIBFT): FORCE
 	$(MAKE) -C $(LIBFT_DIR)
