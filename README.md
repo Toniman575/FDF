@@ -19,7 +19,7 @@ A valid map file must comply with the following rules:
 5.  **Value Limits**: The program does not protect against integer overflow. Map dimensions and height values should stay within the `INT_MIN` and `INT_MAX` range.
 6.  **Minimum Points**: A wireframe requires at least two points to draw a line. A map with fewer than two points will render nothing.
 
-If any of these rules are not followed, the program should not crash, but the model may not render as expected.
+If any of these rules are not followed, the program should not crash, but the model may not render as expected. If the map file is empty, the program will close gracefully.
 
 ## Controls
 - **Pan Camera**: `W`, `A`, `S`, `D` keys.
