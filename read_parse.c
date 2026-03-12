@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:35 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/12 15:53:54 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ static void	prepare_points(t_state *state, char **cols, int fd)
 	int		cols_n;
 
 	cols_n = split_n(cols);
+	if (state->world.size.point_w < cols_n)
+		state->world.size.point_w = cols_n;
 	if (!state->world.points)
 	{
 		state->world.points = ft_calloc(cols_n, sizeof(t_world_point));
@@ -117,7 +119,6 @@ void	parse_row(char *row, int row_i, t_state *state, int fd)
 		col_i++;
 	}
 	state->world.points_n += col_i;
-	state->world.size.point_w = col_i;
 	free_split(cols);
 }
 
