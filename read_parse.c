@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:18:19 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/12 15:53:54 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/14 10:14:44 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	realloc_points(t_state *state, int cols_n, int fd)
 	if (!temp_points)
 	{
 		close(fd);
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	}
 	ft_memcpy(temp_points, state->world.points, sizeof(t_world_point)
 		* (state->world.points_n));
@@ -67,7 +67,7 @@ static void	realloc_points(t_state *state, int cols_n, int fd)
 	{
 		close(fd);
 		free(temp_points);
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	}
 	ft_memcpy(state->world.points, temp_points, sizeof(t_world_point)
 		* (state->world.points_n));
@@ -87,7 +87,7 @@ static void	prepare_points(t_state *state, char **cols, int fd)
 		if (!state->world.points)
 		{
 			close(fd);
-			handle_exit(state);
+			handle_exit(state, EXIT_FAILURE);
 		}
 	}
 	else
@@ -104,7 +104,7 @@ void	parse_row(char *row, int row_i, t_state *state, int fd)
 	{
 		free_split(cols);
 		close(fd);
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	}
 	prepare_points(state, cols, fd);
 	col_i = 0;
@@ -114,7 +114,7 @@ void	parse_row(char *row, int row_i, t_state *state, int fd)
 		{
 			free_split(cols);
 			close(fd);
-			handle_exit(state);
+			handle_exit(state, EXIT_FAILURE);
 		}
 		col_i++;
 	}
@@ -130,12 +130,12 @@ void	read_file(t_state *state, const char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	new_line = get_next_line_single(fd);
 	if (!new_line)
 	{
 		close(fd);
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	}
 	row_i = 0;
 	while (new_line)

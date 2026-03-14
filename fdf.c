@@ -6,11 +6,12 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 18:38:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:54 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/14 10:13:04 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
+#include <stdlib.h>
 
 #include "camera_utils.h"
 #include "input.h"
@@ -39,5 +40,5 @@ int	main(int argc, char **argv)
 	reset_camera(&state);
 	register_hooks(&state);
 	mlx_loop(state.mlx.mlx_ptr);
-	handle_exit(&state);
+	handle_exit(&state, EXIT_SUCCESS);
 }

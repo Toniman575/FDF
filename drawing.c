@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 16:07:51 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:56 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/14 10:18:56 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	render(t_state *state)
 	if (gettimeofday(&ct, NULL) < 0)
 	{
 		mlx_loop_end(state->mlx.mlx_ptr);
+		handle_exit(state, EXIT_FAILURE);
 		return (0);
 	}
 	delta = ct.tv_sec - state->timestamp.tv_sec

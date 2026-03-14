@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:17:52 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:28 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/14 10:13:21 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_split(char **str)
 	free(str);
 }
 
-void	handle_exit(t_state *state)
+void	handle_exit(t_state *state, int status)
 {
 	if (state->mlx.image.img)
 	{
@@ -48,7 +48,7 @@ void	handle_exit(t_state *state)
 	state->world.points = NULL;
 	free(state->mlx.mlx_ptr);
 	state->mlx.mlx_ptr = NULL;
-	exit(EXIT_SUCCESS);
+	exit(status);
 }
 
 int	ft_atoi_hex(const char *str)

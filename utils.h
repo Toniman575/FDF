@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:22:24 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:24 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/14 10:12:09 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 t_state			init_state(void);
 void			setup(t_state *state, const char *file_path);
 void			free_split(char **str);
-int				handle_exit(t_state *state);
+int				handle_exit(t_state *state, int status);
 void			read_file(t_state *state, const char *file_path);
 t_world_coord	new_world_coord(double x, double y, double z);
 t_screen_coord	new_screen_coord(int x, int y);

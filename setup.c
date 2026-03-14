@@ -6,14 +6,14 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:15:16 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:31 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/14 10:17:18 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdio.h>
 #include <sys/time.h>
 #include <limits.h>
+#include <stdlib.h>
 
 #include "types.h"
 #include "utils.h"
@@ -84,19 +84,19 @@ void	setup(t_state *state, const char *file_path)
 {
 	state->mlx.mlx_ptr = mlx_init();
 	if (!state->mlx.mlx_ptr)
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	state->mlx.win_ptr = mlx_new_window(state->mlx.mlx_ptr,
 			state->window_size.x, state->window_size.y, "FDF");
 	if (!state->mlx.win_ptr)
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	state->mlx.image.img = mlx_new_image(state->mlx.mlx_ptr,
 			state->window_size.x, state->window_size.y);
 	if (!state->mlx.image.img)
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	state->mlx.image.addr = mlx_get_data_addr(state->mlx.image.img,
 			&state->mlx.image.bits_per_pixel, &state->mlx.image.line_length,
 			&state->mlx.image.endian);
 	if (gettimeofday(&state->timestamp, NULL) < 0)
-		handle_exit(state);
+		handle_exit(state, EXIT_FAILURE);
 	read_file(state, file_path);
 }
