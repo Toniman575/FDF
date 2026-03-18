@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   read_parse_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:40:09 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:39 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/18 13:38:06 by anton            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "types.h"
 #include "utils.h"
 
@@ -24,11 +23,13 @@ int	split_n(char **cols)
 	return (cols_n);
 }
 
-t_world_coord	init_world_coord(int col_i, int row_i, char *height,
-	t_state *state)
+void	add_world_point(t_state *state, int nums[3], int height, int color)
 {
-	return (new_world_coord(col_i * state->world
-			.spacing, row_i * state->world.spacing, ft_atoi(height)));
+	state->world.points[nums[0]].coord = new_world_coord(nums[1] * state->world
+			.spacing, nums[2] * state->world.spacing, height);
+	state->world.points[nums[0]].original_z = state->world.points[nums[0]]
+		.coord.z;
+	state->world.points[nums[0]].color = color;
 }
 
 static void	world_heights(t_world *world)

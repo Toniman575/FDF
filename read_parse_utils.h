@@ -6,7 +6,7 @@
 /*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 22:41:08 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/10 14:18:37 by asadik           ###   ########.fr       */
+/*   Updated: 2026/03/18 17:46:19 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include "types.h"
 
 int				split_n(char **cols);
-t_world_coord	init_world_coord(int col_i, int row_i, char *height,
-					t_state *state);
+void			add_world_point(t_state *state, int nums[3],
+					int height, int color);
 t_world_size	world_pixel_size(t_world *world);
 void			normalize_heights(t_world *world);
+int				check_hac(char **hac, int *height, int *color);
 
 #endif

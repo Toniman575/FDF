@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anton <anton@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asadik <asadik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 14:22:24 by asadik            #+#    #+#             */
-/*   Updated: 2026/03/18 11:43:09 by anton            ###   ########.fr       */
+/*   Updated: 2026/03/18 17:53:42 by asadik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void			draw_line_horizontal(t_state *state, t_screen_point start,
 					t_screen_point end);
 int				ft_ishex(char c);
 int				is_valid_hex(const char *str);
-int				is_valid_number(const char *str);
+void			clean_parse_exit(t_state *state, int fd, char *row,
+					char **cols);
+int				check_hac(char **hac, int *height, int *color);
+char			*first_line(int fd, t_state *state);
 
 #endif
