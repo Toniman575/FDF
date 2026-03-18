@@ -9,7 +9,7 @@ LDFLAGS =	-L$(LIBFT_DIR) -lft
 MATHFLAGS =	-lm
 SRCS =		camera_utils.c camera_math.c drawing.c fdf.c keyboard.c line_drawing_utils.c \
 			math_utils.c mouse.c quaternion.c read_parse.c read_parse_utils.c \
-			setup.c utils.c camera_move.c constructors.c color.c
+			setup.c utils.c camera_move.c constructors.c color.c map_validation_utils.c
 OBJS =		$(SRCS:.c=.o)
 DEPS =		$(OBJS:.o=.d)
 

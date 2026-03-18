@@ -12,14 +12,14 @@ Run the program with `./fdf 'path/to/mapfile'`. The program will close gracefull
 
 ## Maps
 A valid map file must comply with the following rules:
-1.  **Grid Structure**: Each row must have the same number of points. Rows are separated by newline characters.
-2.  **Point Separation**: Points on the same row must be separated by spaces.
-3.  **Point Format**: Each point consists of a numeric height value. Optionally, a color can be specified after the height, separated by a comma (e.g., `10,0xFF0000`).
-4.  **Color Format**: Colors must be hexadecimal numbers prefixed with `0x` in ARGB (Alpha, Red, Green, Blue) format. Shorter values are padded with leading zeros; for example, `0xFF` is treated as `0x000000FF` (opaque blue).
-5.  **Value Limits**: The program does not protect against integer overflow. Map dimensions and height values should stay within the `INT_MIN` and `INT_MAX` range.
-6.  **Minimum Points**: A wireframe requires at least two points to draw a line. A map with fewer than two points will render nothing.
+1.  **File Name**: The map file must have a `.fdf` extension.
+2.  **Grid Structure**: Each row must contain the same number of points. Rows are separated by newline characters, and empty lines are not allowed.
+3.  **Point Separation**: Points on the same row must be separated by one or more spaces.
+4.  **Point Format**: Each point must be a valid integer representing the height. Optionally, a color can be specified after the height, separated by a comma (e.g., `10,0xFF0000`). There should be no spaces around the comma.
+5.  **Color Format**: Colors must be hexadecimal numbers prefixed with `0x` in ARGB (Alpha, Red, Green, Blue) format. For example, `0xFF` is a valid short form for blue.
+6.  **Minimum Points**: A map must contain at least two points.
 
-If any of these rules are not followed, the program should not crash, but the model may not render as expected. If the map file is empty, the program will close gracefully.
+If the map file is invalid, empty, or does not follow these rules, the program will exit gracefully.
 
 ## Controls
 - **Pan Camera**: `W`, `A`, `S`, `D` keys.
